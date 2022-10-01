@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pyserial = "*"
+redis = "*"
+websocket-client = "*"
+simple-websocket-server = "*"
+opencv-python = "*"
+fastapi = {extras = ["all"], version = "*"}
+uvicorn = "*"
+aioredis = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"

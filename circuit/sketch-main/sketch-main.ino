@@ -178,6 +178,7 @@ void pir_scan(){
         last_detc = currentTime;
       }
     }
+      
       last_scan = currentTime;
     }
   
