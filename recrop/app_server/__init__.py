@@ -2,6 +2,7 @@ import os
 
 import aioredis
 from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.requests import Request
 from fastapi.responses import JSONResponse
 
@@ -16,6 +17,18 @@ def create_app(redis=None):
     """
 
     app = FastAPI()
+
+    origins = [
+    "*"
+    ]
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
     app.include_router(router)
 

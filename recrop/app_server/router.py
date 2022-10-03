@@ -12,8 +12,9 @@ manager = ConnectionManager()
 
 static_dir = Path(os.getenv("CAMERA_OUT_DIR", "./output/"))
 
+
 @router.post("/pump")
-async def toggle_pump(state:int, redis=Depends(get_redis)):
+async def toggle_pump(state: int, redis=Depends(get_redis)):
 
     if state == 1:
         await redis.set("pump", "1")
@@ -21,8 +22,9 @@ async def toggle_pump(state:int, redis=Depends(get_redis)):
     elif state == 0:
         await redis.set("pump", "0")
 
+
 @router.websocket("/")
-async def socket(websocket:WebSocket):
+async def socket(websocket: WebSocket):
     await manager.connect(websocket)
 
     try:
@@ -32,11 +34,11 @@ async def socket(websocket:WebSocket):
             if data["event"] == "feed":
                 await manager.post(data)
     except WebSocketDisconnect:
-        pass
+        manager.disconnect(websocket)
 
 
 @router.get("/images/{img_id}")
-async def get_image(img_id:str):
+async def get_image(img_id: str):
     img_path = Path(static_dir.resolve(), f"{img_id}.png")
 
     if img_path.exists():

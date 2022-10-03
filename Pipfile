@@ -12,6 +12,7 @@ opencv-python = "*"
 fastapi = {extras = ["all"], version = "*"}
 uvicorn = "*"
 aioredis = "*"
+hypercorn = "*"
 
 [dev-packages]
 

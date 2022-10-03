@@ -1,0 +1,7 @@
+.toggle:checked {
+    @apply bg-green-600
+}
+
+.toggle {
+    @apply bg-red-600
+}
