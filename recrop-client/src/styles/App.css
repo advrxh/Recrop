@@ -1,3 +1,22 @@
-.container {
-    @apply flex justify-center items-center;
+#home {
+    width: 100vw;
+    height: auto;
+    @apply bg-slate-100 flex flex-col justify-center items-center w-full pb-4
+}
+
+#heading {
+    @apply w-full text-3xl sm:text-5xl font-bold text-center p-4 text-primary border-8 border-r-4 border-secondary
+}
+
+.pump-control{
+    @apply w-full flex flex-col justify-center items-center my-2
+}
+
+.mean-display {
+    @apply w-full flex sm:flex-row flex-col justify-center items-center my-1
+}
+
+
+.last-motion {
+    @apply w-8/12 flex flex-row justify-center items-center my-4 mx-5 bg-bg border-2 border-primary rounded-xl drop-shadow-xl
 }

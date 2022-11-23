@@ -1,18 +1,21 @@
-import { useEffect } from "react";
 import PumpControl from "./components/PumpControl";
 import "./styles/App.css";
 
-import { w3cwebsocket as W3CWebSocket } from "websocket";
-import DataLogger from "./components/DataLogger";
+import MeanDisplay from "./components/MeanDisplay";
+import LastMotion from "./components/LastMotion";
 
 function App() {
     return (
         <div id="home">
-            <div className="container">
+            <h1 id="heading">RECROP - SMART YIELD ASSIST</h1>
+            <div className="pump-control">
                 <PumpControl />
             </div>
-            <div className="container w-full flex-col p-5">
-                <DataLogger />
+            <div className="mean-display">
+                <MeanDisplay />
+            </div>
+            <div className="last-motion">
+                <LastMotion />
             </div>
         </div>
     );

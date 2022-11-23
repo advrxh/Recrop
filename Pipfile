@@ -13,6 +13,7 @@ fastapi = {extras = ["all"], version = "*"}
 uvicorn = "*"
 aioredis = "*"
 hypercorn = "*"
+pillow = "*"
 
 [dev-packages]
 

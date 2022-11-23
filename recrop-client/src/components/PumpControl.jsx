@@ -10,9 +10,10 @@ export default function PumpControl() {
     useEffect(() => {
         async function togglePump(state) {
             await axios.post(
-                process.env.REACT_APP_SERVER + `pump?state=${state}`
+                `http://${window.location.hostname}:8000/pump?state=${state}`
             );
         }
+
         if (checked) {
             togglePump(1);
         } else {
@@ -21,21 +22,24 @@ export default function PumpControl() {
     }, [checked]);
 
     return (
-        <div className="container flex-col p-5">
+        <>
+            <h1 className="text-2xl sm:text-4xl font-bold text-secondary drop-shadow-xl my-4 p-6 border-2 border-primary bg-bg rounded-xl cursor-pointer">
+                PUMP:{" "}
+                {!checked ? (
+                    <span className="text-red-400">OFF</span>
+                ) : (
+                    <span className="text-primary">ON</span>
+                )}
+            </h1>
+
             <input
                 type="checkbox"
-                className="toggle m-4 toggle-lg"
+                className={`toggle m-4 toggle-lg ${
+                    checked ? "bg-primary" : "bg-red-400"
+                }`}
                 checked={checked}
                 onChange={() => setChecked(!checked)}
             />
-            <h1 className="text-4xl font-bold text-white drop-shadow-xl">
-                PUMP:{" "}
-                {!checked ? (
-                    <span className="text-red-600">OFF</span>
-                ) : (
-                    <span className="text-green-600">ON</span>
-                )}
-            </h1>
-        </div>
+        </>
     );
 }

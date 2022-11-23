@@ -1,8 +1,11 @@
 import os
+from io import BytesIO
 from pathlib import Path
 
+from base64 import b64encode
+
 from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect
-from fastapi.responses import FileResponse
+from fastapi.responses import StreamingResponse, Response
 
 from recrop.app_server.deps import get_redis
 from recrop.app_server.socket_manager import ConnectionManager
@@ -42,6 +45,7 @@ async def get_image(img_id: str):
     img_path = Path(static_dir.resolve(), f"{img_id}.png")
 
     if img_path.exists():
-        return FileResponse(img_path.resolve())
+        encoded_data = b64encode(img_path.open("rb").read()).decode("utf-8")
+        return {"b64": encoded_data}
 
     return None
