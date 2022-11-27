@@ -9,6 +9,10 @@ from recrop.serial_manager.event_classifier import Classifier
 from recrop.serial_manager.pump_toggle import toggle_pump_state
 
 
+REDIS_HOST = os.getenv("REDIS_HOST", 'localhost')
+REDIS_PASS = os.getenv("REDIS_PASS", '')
+REDIS_PORT = os.getenv("REDIS_PORT", 6379)
+
 class Manager():
 
     def __init__(self, port: str = "COM3") -> None:
@@ -16,10 +20,9 @@ class Manager():
         self.serial_com = serial.Serial(self.port, 9600)
         
         self.server_host = os.getenv("WEBSOCKET_SERVER", "ws://echo.websocket.events")
-        self.redis_host = os.getenv("REDIS_HOST", "localhost")
 
         self.server = websocket.WebSocket()
-        self.redis = redis.Redis(host=self.redis_host,port=6379)
+        self.redis = redis.Redis(host=REDIS_HOST, password=REDIS_PASS, port=REDIS_PORT)
 
     def exec_loop(self):
 

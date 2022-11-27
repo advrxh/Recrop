@@ -44,6 +44,7 @@ async def socket(websocket: WebSocket):
 async def get_image(img_id: str):
     img_path = Path(static_dir.resolve(), f"{img_id}.png")
 
+
     if img_path.exists():
         encoded_data = b64encode(img_path.open("rb").read()).decode("utf-8")
         return {"b64": encoded_data}

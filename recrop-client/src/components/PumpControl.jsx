@@ -10,7 +10,7 @@ export default function PumpControl() {
     useEffect(() => {
         async function togglePump(state) {
             await axios.post(
-                `http://${window.location.hostname}:8000/pump?state=${state}`
+                `${process.env.REACT_APP_SERVER}pump?state=${state}`
             );
         }
 
