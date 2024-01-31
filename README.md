@@ -1,1 +1,2 @@
-# Hey bozo! yeah, you. You don have nothing to do with this project. This is for my school. Now buz off.
+# Assisting agriculture using **RECROP**
+Proof of concept for crop managment using Multi Variable Linear regression
